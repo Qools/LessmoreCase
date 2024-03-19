@@ -31,7 +31,7 @@ namespace LessmoreCase.Game
         public Vector2 GridCenter => this.transform.position;
         public Transform GridContainer => this.transform;
 
-        private void Awake()
+        private void OnEnable()
         {
             this._gridInput = new GameGridInput(this, this._selectionLine);
             this._gridMovement = new GameGridMovement(this);

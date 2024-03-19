@@ -25,7 +25,7 @@ namespace LessmoreCase.Game
             this._selectionLine.Clear();
             this.SelectedElements.Clear();
 
-            EventSystem.OnSelectionChanged.Invoke(this.SelectedElements.Count);
+            EventSystem.CallSelectionChanged(this.SelectedElements.Count);
         }
         public IEnumerator WaitForSelection()
         {
@@ -138,7 +138,7 @@ namespace LessmoreCase.Game
 
             this._selectionLine.SetPositions(this.SelectedElements);
 
-            EventSystem.OnSelectionChanged.Invoke(this.SelectedElements.Count);
+            EventSystem.CallSelectionChanged(this.SelectedElements.Count);
         }
 
         private void _deselectLast()
@@ -147,7 +147,7 @@ namespace LessmoreCase.Game
 
             this._selectionLine.SetPositions(this.SelectedElements);
 
-            EventSystem.OnSelectionChanged.Invoke(this.SelectedElements.Count);
+            EventSystem.CallSelectionChanged(this.SelectedElements.Count);
         }
 
         private bool _isValidInput()

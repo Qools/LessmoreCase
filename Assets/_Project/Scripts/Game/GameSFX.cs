@@ -17,6 +17,11 @@ namespace LessmoreCase.Game
             this.audioSource = GetComponent<AudioSource>();
         }
 
+        public void Init()
+        {
+            SetStatus(Status.ready);
+        }
+
         public void Play(AudioClip clip)
         {
             SFXManager.Instance.PlayOneShot(clip);

@@ -45,7 +45,7 @@ namespace LessmoreCase.Game
 
             GameController.Instance.MovesAvailable--;
 
-            EventSystem.OnElementsDespawned.Invoke(elements.Count);
+            EventSystem.CallElementsDespawned(elements.Count);
         }
     }
 }

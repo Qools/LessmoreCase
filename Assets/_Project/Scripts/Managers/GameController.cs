@@ -42,6 +42,8 @@
 
         private void OnNewLevelLoad()
         {
+            this._grid = FindAnyObjectByType<GameGrid>();
+
             InitializeGame();
 
             StartCoroutine(RunGame());
@@ -52,7 +54,7 @@
             int oldScore = Score;
             Score = oldScore + count * (count - 1);
 
-            EventSystem.OnScoreChanged.Invoke(oldScore, Score);
+            EventSystem.CallScoreChanged(oldScore, Score);
         }
 
         public void InitializeGame()
