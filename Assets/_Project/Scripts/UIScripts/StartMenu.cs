@@ -1,21 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-
-public class StartMenu : UIPanel
+namespace LessmoreCase.Game.UI
 {
-    [SerializeField] private Button startButton;
+    using LessmoreCase.Events;
+    using UnityEngine;
+    using UnityEngine.UI;
 
-    private void Start()
+    public class StartMenu : UIPanel
     {
-        startButton.onClick.AddListener(() => StartGame());
-    }
+        [SerializeField] private Button startButton;
 
-    public void StartGame()
-    {
-        EventSystem.CallStartGame();
+        private void Start()
+        {
+            startButton.onClick.AddListener(() => StartGame());
+        }
 
-        MenuManager.Instance.SwitchPanel<InGamePanel>();
+        public void StartGame()
+        {
+            EventSystem.CallStartGame();
+
+            MenuManager.Instance.SwitchPanel<InGamePanel>();
+        }
     }
 }

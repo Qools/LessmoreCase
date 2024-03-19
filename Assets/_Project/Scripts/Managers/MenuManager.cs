@@ -1,92 +1,97 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class MenuManager : Singleton<MenuManager>
+namespace LessmoreCase.Game
 {
-    public List<UIPanel> panels = new List<UIPanel>();
-    public GameObject loadingScreen;
+    using LessmoreCase.Game.UI;
+    using System.Collections.Generic;
+    using UnityEngine;
+    using LessmoreCase.Utilities;
 
-    public void Init()
+    public class MenuManager : Singleton<MenuManager>
     {
-        CloseAllPanels();
+        public List<UIPanel> panels = new List<UIPanel>();
+        public GameObject loadingScreen;
 
-        SetStatus(Status.ready);
-    }
-      
-    #region Panel Functions
-
-    public void CloseAllPanels()
-    {
-        foreach (var panel in panels)
+        public void Init()
         {
-            panel.Close();
+            CloseAllPanels();
+
+            SetStatus(Status.ready);
         }
-    }
 
-    public T GetPanel<T>(object data = null) where T : UIPanel
-    {
-        for (int i = 0; i < panels.Count; ++i)
+        #region Panel Functions
+
+        public void CloseAllPanels()
         {
-            T view = panels[i] as T;
-            if (view != null)
+            foreach (var panel in panels)
             {
-                return view;
+                panel.Close();
             }
         }
 
-        return null;
-    }
-
-    public T OpenPanel<T>(object data = null) where T : UIPanel
-    {
-
-        for (int i = 0; i < panels.Count; ++i)
+        public T GetPanel<T>(object data = null) where T : UIPanel
         {
-            T view = panels[i] as T;
-            if (view != null)
+            for (int i = 0; i < panels.Count; ++i)
             {
-                view.Open();
-                return view;
+                T view = panels[i] as T;
+                if (view != null)
+                {
+                    return view;
+                }
             }
+
+            return null;
         }
 
-        return null;
-    }
-
-    public T ClosePanel<T>(object data = null) where T : UIPanel
-    {
-
-        for (int i = 0; i < panels.Count; ++i)
+        public T OpenPanel<T>(object data = null) where T : UIPanel
         {
-            T view = panels[i] as T;
-            if (view != null)
+
+            for (int i = 0; i < panels.Count; ++i)
             {
-                view.Close();
-                return view;
+                T view = panels[i] as T;
+                if (view != null)
+                {
+                    view.Open();
+                    return view;
+                }
             }
+
+            return null;
         }
 
-        return null;
-    }
-
-
-    public T SwitchPanel<T>(object data = null) where T : UIPanel
-    {
-        CloseAllPanels();
-        for (int i = 0; i < panels.Count; ++i)
+        public T ClosePanel<T>(object data = null) where T : UIPanel
         {
-            T view = panels[i] as T;
-            if (view != null)
+
+            for (int i = 0; i < panels.Count; ++i)
             {
-                view.Open();
-                return view;
+                T view = panels[i] as T;
+                if (view != null)
+                {
+                    view.Close();
+                    return view;
+                }
             }
+
+            return null;
         }
 
-        return null;
+
+        public T SwitchPanel<T>(object data = null) where T : UIPanel
+        {
+            CloseAllPanels();
+            for (int i = 0; i < panels.Count; ++i)
+            {
+                T view = panels[i] as T;
+                if (view != null)
+                {
+                    view.Open();
+                    return view;
+                }
+            }
+
+            return null;
+        }
+
+        #endregion
+
     }
 
-    #endregion
 }

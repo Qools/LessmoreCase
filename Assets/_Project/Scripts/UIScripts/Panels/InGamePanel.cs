@@ -1,15 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
-public class InGamePanel : UIPanel
+namespace LessmoreCase.Game.UI
 {
-    public TextMeshProUGUI inGameText;
+    using TMPro;
 
-    public override void Open()
+    public class InGamePanel : UIPanel
     {
-        base.Open();
+        public TextMeshProUGUI inGameText;
 
-        inGameText.text = "Level " + DataManager.Instance.GetLevel().ToString("00");
+        public override void Open()
+        {
+            base.Open();
+
+            inGameText.text = "Level " + DataManager.Instance.GetLevel().ToString("00");
+        }
     }
 }

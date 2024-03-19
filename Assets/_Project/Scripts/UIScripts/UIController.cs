@@ -1,85 +1,88 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using DG.Tweening;
-
-public class UIController : MonoBehaviour
+namespace LessmoreCase.Game
 {
-    [SerializeField] private CanvasGroup startMenu;
-    [SerializeField] private CanvasGroup endGameMenu;
-    [SerializeField] private CanvasGroup inGamePanel;
+    using LessmoreCase.Utilities;
+    using UnityEngine;
+    using DG.Tweening;
+    using LessmoreCase.Events;
 
-    private void Start()
+    public class UIController : MonoBehaviour
     {
-        startMenu.DOFade(1, 0.01f);
-        startMenu.interactable = true;
-        startMenu.blocksRaycasts = true;
+        [SerializeField] private CanvasGroup startMenu;
+        [SerializeField] private CanvasGroup endGameMenu;
+        [SerializeField] private CanvasGroup inGamePanel;
 
-        endGameMenu.DOFade(0, 0.01f);
-        endGameMenu.interactable = false;
-        endGameMenu.blocksRaycasts = false;
+        private void Start()
+        {
+            startMenu.DOFade(1, 0.01f);
+            startMenu.interactable = true;
+            startMenu.blocksRaycasts = true;
 
-        inGamePanel.DOFade(0, 0.01f);
-        inGamePanel.interactable = false;
-        inGamePanel.blocksRaycasts = false;
-    }
+            endGameMenu.DOFade(0, 0.01f);
+            endGameMenu.interactable = false;
+            endGameMenu.blocksRaycasts = false;
 
-    private void OnEnable()
-    {
-        EventSystem.OnStartGame += OnGameStart;
-        EventSystem.OnGameOver += OnGameEnd;
-        EventSystem.OnNewLevelLoad += OnNewLevelLoad;
-    }
+            inGamePanel.DOFade(0, 0.01f);
+            inGamePanel.interactable = false;
+            inGamePanel.blocksRaycasts = false;
+        }
 
-    private void OnDisable()
-    {
-        EventSystem.OnStartGame -= OnGameStart;
-        EventSystem.OnGameOver -= OnGameEnd;
-        EventSystem.OnNewLevelLoad -= OnNewLevelLoad;
-    }
+        private void OnEnable()
+        {
+            EventSystem.OnStartGame += OnGameStart;
+            EventSystem.OnGameOver += OnGameEnd;
+            EventSystem.OnNewLevelLoad += OnNewLevelLoad;
+        }
 
-    private void OnGameStart()
-    {
-        startMenu.DOFade(0, 0.01f);
-        startMenu.interactable = false;
-        startMenu.blocksRaycasts = false;
+        private void OnDisable()
+        {
+            EventSystem.OnStartGame -= OnGameStart;
+            EventSystem.OnGameOver -= OnGameEnd;
+            EventSystem.OnNewLevelLoad -= OnNewLevelLoad;
+        }
 
-        endGameMenu.DOFade(0, 0.01f);
-        endGameMenu.interactable = false;
-        endGameMenu.blocksRaycasts = false;
+        private void OnGameStart()
+        {
+            startMenu.DOFade(0, 0.01f);
+            startMenu.interactable = false;
+            startMenu.blocksRaycasts = false;
 
-        inGamePanel.DOFade(1, 0.01f);
-        inGamePanel.interactable = true;
-        inGamePanel.blocksRaycasts = true;
-    }
+            endGameMenu.DOFade(0, 0.01f);
+            endGameMenu.interactable = false;
+            endGameMenu.blocksRaycasts = false;
 
-    private void OnGameEnd(GameResult gameResult)
-    {
-        startMenu.DOFade(0, 0.01f);
-        startMenu.interactable = false;
-        startMenu.blocksRaycasts = false;
+            inGamePanel.DOFade(1, 0.01f);
+            inGamePanel.interactable = true;
+            inGamePanel.blocksRaycasts = true;
+        }
 
-        endGameMenu.DOFade(1, 0.01f);
-        endGameMenu.interactable = true;
-        endGameMenu.blocksRaycasts = true;
+        private void OnGameEnd(GameResult gameResult)
+        {
+            startMenu.DOFade(0, 0.01f);
+            startMenu.interactable = false;
+            startMenu.blocksRaycasts = false;
 
-        inGamePanel.DOFade(0, 0.01f);
-        inGamePanel.interactable = false;
-        inGamePanel.blocksRaycasts = false;
-    }
+            endGameMenu.DOFade(1, 0.01f);
+            endGameMenu.interactable = true;
+            endGameMenu.blocksRaycasts = true;
 
-    private void OnNewLevelLoad()
-    {
-        startMenu.DOFade(1, 0.01f);
-        startMenu.interactable = true;
-        startMenu.blocksRaycasts = true;
+            inGamePanel.DOFade(0, 0.01f);
+            inGamePanel.interactable = false;
+            inGamePanel.blocksRaycasts = false;
+        }
 
-        endGameMenu.DOFade(0, 0.01f);
-        endGameMenu.interactable = false;
-        endGameMenu.blocksRaycasts = false;
+        private void OnNewLevelLoad()
+        {
+            startMenu.DOFade(1, 0.01f);
+            startMenu.interactable = true;
+            startMenu.blocksRaycasts = true;
 
-        inGamePanel.DOFade(0, 0.01f);
-        inGamePanel.interactable = false;
-        inGamePanel.blocksRaycasts = false;
+            endGameMenu.DOFade(0, 0.01f);
+            endGameMenu.interactable = false;
+            endGameMenu.blocksRaycasts = false;
+
+            inGamePanel.DOFade(0, 0.01f);
+            inGamePanel.interactable = false;
+            inGamePanel.blocksRaycasts = false;
+        }
     }
 }

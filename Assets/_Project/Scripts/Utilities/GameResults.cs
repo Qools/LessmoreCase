@@ -1,6 +1,8 @@
-
-public enum GameResult
+namespace LessmoreCase.Utilities
 {
-    Win,
-    Lose
+    public enum GameResult
+    {
+        Win,
+        Lose
+    }
 }

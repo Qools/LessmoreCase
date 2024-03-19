@@ -1,74 +1,77 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-
-public class EndGameMenu : UIPanel
+namespace LessmoreCase.Game.UI
 {
-    [SerializeField] private Button retryButton;
-    [SerializeField] private Button nextLevelButton;
-    public TextMeshProUGUI endGameText;
+    using UnityEngine;
+    using UnityEngine.UI;
+    using TMPro;
+    using LessmoreCase.Utilities;
+    using LessmoreCase.Events;
 
-    private void Start()
+    public class EndGameMenu : UIPanel
     {
-        retryButton.gameObject.SetActive(false);
-        nextLevelButton.gameObject.SetActive(false);
-    }
+        [SerializeField] private Button retryButton;
+        [SerializeField] private Button nextLevelButton;
+        public TextMeshProUGUI endGameText;
 
-    public override void OnEnable()
-    {
-        canvasGroup = GetComponent<CanvasGroup>();
-        EventSystem.OnGameOver += OnGameEnd;
-    }
-
-    public void OnDisable()
-    {
-        EventSystem.OnGameOver -= OnGameEnd;
-    }
-
-    private void OnGameEnd(GameResult gameResult)
-    {
-        retryButton.gameObject.SetActive(false);
-        nextLevelButton.gameObject.SetActive(false);
-
-        if (gameResult == GameResult.Win)
+        private void Start()
         {
-            Win();
+            retryButton.gameObject.SetActive(false);
+            nextLevelButton.gameObject.SetActive(false);
         }
 
-        else
+        public override void OnEnable()
         {
-            GameOver();
+            canvasGroup = GetComponent<CanvasGroup>();
+            EventSystem.OnGameOver += OnGameEnd;
         }
-        
-    }
 
-    private void Win()
-    {
-        nextLevelButton.gameObject.SetActive(true);
+        public void OnDisable()
+        {
+            EventSystem.OnGameOver -= OnGameEnd;
+        }
 
-        endGameText.text = "Level " + (DataManager.Instance.GetLevel() - 1).ToString() + " Completed";
-    }
+        private void OnGameEnd(GameResult gameResult)
+        {
+            retryButton.gameObject.SetActive(false);
+            nextLevelButton.gameObject.SetActive(false);
 
-    private void GameOver()
-    {
-        retryButton.gameObject.SetActive(true);
+            if (gameResult == GameResult.Win)
+            {
+                Win();
+            }
 
-        endGameText.text = "Level Failed";
-    }
+            else
+            {
+                GameOver();
+            }
 
-    public void OnNextButtonPressed()
-    {
-        GameManager.Instance.LoadLevel(DataManager.Instance.GetLevel());
+        }
 
-        MenuManager.Instance.SwitchPanel<StartMenu>();
-    }
+        private void Win()
+        {
+            nextLevelButton.gameObject.SetActive(true);
 
-    public void OnRetryButtonPressed()
-    {
-        GameManager.Instance.LoadLevel(DataManager.Instance.GetLevel());
+            endGameText.text = "Level " + (DataManager.Instance.GetLevel() - 1).ToString() + " Completed";
+        }
 
-        MenuManager.Instance.SwitchPanel<StartMenu>();
+        private void GameOver()
+        {
+            retryButton.gameObject.SetActive(true);
+
+            endGameText.text = "Level Failed";
+        }
+
+        public void OnNextButtonPressed()
+        {
+            GameManager.Instance.LoadLevel(DataManager.Instance.GetLevel());
+
+            MenuManager.Instance.SwitchPanel<StartMenu>();
+        }
+
+        public void OnRetryButtonPressed()
+        {
+            GameManager.Instance.LoadLevel(DataManager.Instance.GetLevel());
+
+            MenuManager.Instance.SwitchPanel<StartMenu>();
+        }
     }
 }
