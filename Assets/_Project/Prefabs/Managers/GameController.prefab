@@ -45,3 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   status: 0
+  _grid: {fileID: 0}
+  _movesAvailable: 9999999

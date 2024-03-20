@@ -23,7 +23,8 @@ namespace LessmoreCase.Game
         [SerializeField] private List<Color> _colors = new List<Color>();
 
         public List<GridElementValue> gridElementValues = new List<GridElementValue>();
-
+        public List<GridElementValue> gridElementsToSpawn;
+        
         private GameGridInput _gridInput;
         private GameGridMovement _gridMovement;
         private GameGridSpawning _gridSpawning;
@@ -45,6 +46,12 @@ namespace LessmoreCase.Game
             this._gridInput = new GameGridInput(this, this._selectionLine);
             this._gridMovement = new GameGridMovement(this);
             this._gridSpawning = new GameGridSpawning(this);
+
+            gridElementsToSpawn.AddRange(new List<GridElementValue> { 
+                gridElementValues[0], 
+                gridElementValues[1], 
+                gridElementValues[2] 
+            });
         }
 
         public void SetUpGrid()
@@ -63,10 +70,11 @@ namespace LessmoreCase.Game
 
                     element.transform.SetParent(this.GridContainer.transform, true);
 
-                    int index = this.gridElementValues.GetRandomIndex();
+                    int index = this.gridElementsToSpawn.GetRandomIndex();
 
-                    element.Color = this.gridElementValues[index].GridColor;
-                    element.ElementText = this.gridElementValues[index].GridValue.ToString();
+                    element.Color = this.gridElementsToSpawn[index].GridColor;
+                    element.ElementText = this.gridElementsToSpawn[index].GridValue.ToString();
+                    element.Value = this.gridElementsToSpawn[index].GridValue;
 
                     this.Elements.Add(element);
                 }

@@ -307,6 +307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gridText: {fileID: 4983813648959351881}
   _spriteRenderer: {fileID: 5356982704602579932}
+  spawnPosition: {x: 0, y: 0, z: 0}
 --- !u!58 &7799023858854781545
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -322,4 +323,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.75
+  m_Radius: 0.5

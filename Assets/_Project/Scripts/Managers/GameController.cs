@@ -11,7 +11,9 @@
 
         [SerializeField] private GameGrid _grid = null;
 
-        [SerializeField] private int _movesAvailable = 999999999;
+        [SerializeField] private int _movesAvailable = int.MaxValue;
+
+        private int _moveSelectionValue;
 
         public int MovesAvailable
         {
@@ -19,6 +21,11 @@
             set => this._movesAvailable = value;
         }
 
+        public int MoveSelectionValue
+        {
+            get { return this._moveSelectionValue; }
+            set { this._moveSelectionValue = value; }
+        }
 
         public void Init()
         {
@@ -76,6 +83,23 @@
 
                 yield return this._grid.RespawnElements();
             }
+        }
+
+        public int FindClosestValue(int value)
+        {
+            var closest = int.MaxValue;
+            var minDifference = int.MaxValue;
+            for (int i = 0; i < _grid.gridElementValues.Count; i++)
+            {
+                var difference = Mathf.Abs((long)_grid.gridElementValues[i].GridValue - value);
+                if (minDifference > difference)
+                {
+                    minDifference = (int)difference;
+                    closest = _grid.gridElementValues[i].GridValue;
+                }
+            }
+
+            return closest;
         }
     }
 }

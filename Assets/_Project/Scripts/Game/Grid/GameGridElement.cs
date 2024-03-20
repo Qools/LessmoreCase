@@ -6,7 +6,7 @@ namespace LessmoreCase.Game
 
     public class GameGridElement : MonoBehaviour
     {
-
+        private int _value;
         [SerializeField] private TextMeshPro _gridText;
         [SerializeField] private SpriteRenderer _spriteRenderer = null;
 
@@ -32,6 +32,12 @@ namespace LessmoreCase.Game
             set { this.transform.position = value; }
         }
 
+        public int Value
+        {
+            get { return this._value; }
+            set { this._value = value; }
+        }
+
         public void Move(Vector3 targetPos, float time)
         {
             this.IsMoving = true;
@@ -49,7 +55,7 @@ namespace LessmoreCase.Game
             Vector2 startScale = Vector2.one * 0.1f;
             Vector2 endScale = Vector2.one * 1.0f;
 
-            StartCoroutine(this.transform.ScaleCoroutine(startScale, endScale, 0.25f));
+            this.transform.ScaleCoroutine(startScale, endScale, 0.25f);
         }
 
         public void Despawn(Transform target)
@@ -65,10 +71,10 @@ namespace LessmoreCase.Game
             Vector2 startScale = Vector2.one * 1.0f;
             Vector2 endScale = Vector2.one * 0.1f;
 
-            StartCoroutine(this.transform.ScaleCoroutine(startScale, endScale, 0.25f, () =>
+            this.transform.ScaleCoroutine(startScale, endScale, 0.25f, () =>
             {
                 this.gameObject.SetActive(false);
-            }));
+            });
         }
     }
 }
