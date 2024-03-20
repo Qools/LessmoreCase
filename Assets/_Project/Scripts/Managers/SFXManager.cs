@@ -14,6 +14,11 @@ namespace LessmoreCase.Game
             this.AudioSource = GetComponent<AudioSource>();
         }
 
+        public void Init()
+        {
+            SetStatus(Status.ready);
+        }
+
         private void Start()
         {
             LoadSettings();

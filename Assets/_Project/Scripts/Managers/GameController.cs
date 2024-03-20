@@ -11,7 +11,7 @@
 
         [SerializeField] private GameGrid _grid = null;
 
-        [SerializeField] private int _movesAvailable = 20;
+        [SerializeField] private int _movesAvailable = 999999999;
 
         public int MovesAvailable
         {

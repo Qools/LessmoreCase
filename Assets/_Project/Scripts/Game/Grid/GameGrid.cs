@@ -6,6 +6,13 @@ namespace LessmoreCase.Game
 
     public class GameGrid : MonoBehaviour
     {
+        [System.Serializable]
+        public class GridElementValue
+        {
+            public Color GridColor;
+            public int GridValue;
+        }
+
         [SerializeField] private SelectionLine _selectionLine = null;
         [SerializeField] private GameGridElement _gridElementPrefab = null;
 
@@ -15,13 +22,15 @@ namespace LessmoreCase.Game
 
         [SerializeField] private List<Color> _colors = new List<Color>();
 
+        public List<GridElementValue> gridElementValues = new List<GridElementValue>();
+
         private GameGridInput _gridInput;
         private GameGridMovement _gridMovement;
         private GameGridSpawning _gridSpawning;
 
         public List<GameGridElement> Elements { get; } = new List<GameGridElement>();
 
-        public List<Color> Colors => this._colors;
+        //public List<Color> Colors => this._colors;
 
         public Vector2 StartCellPosition => this.GridCenter - this.CellSize * new Vector2(this.ColumnCount - 1, this.RowCount - 1) / 2.0f;
 
@@ -49,10 +58,15 @@ namespace LessmoreCase.Game
                     element.transform.localScale = Vector2.one * this._cellSize;
 
                     element.transform.position = this.GridToWorldPosition(x, y);
+                    element.Position = this.GridToWorldPosition(x, y);
+                    element.spawnPosition = element.Position;
 
                     element.transform.SetParent(this.GridContainer.transform, true);
 
-                    element.Color = this._colors.GetRandom();
+                    int index = this.gridElementValues.GetRandomIndex();
+
+                    element.Color = this.gridElementValues[index].GridColor;
+                    element.ElementText = this.gridElementValues[index].GridValue.ToString();
 
                     this.Elements.Add(element);
                 }

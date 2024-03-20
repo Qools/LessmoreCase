@@ -25,6 +25,8 @@ namespace LessmoreCase.Game
 
             yield return StartCoroutine(GameSFX.Instance.WaitInit(GameSFX.Instance.Init));
 
+            yield return StartCoroutine(SFXManager.Instance.WaitInit(SFXManager.Instance.Init));
+
             yield return StartCoroutine(WaitInit(Init));
 
             LoadLevel(DataManager.Instance.GetLevel());

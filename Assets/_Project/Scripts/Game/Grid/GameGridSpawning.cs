@@ -23,7 +23,10 @@ namespace LessmoreCase.Game
             {
                 if (element.IsSpawned == false)
                 {
-                    element.Color = this._grid.Colors.GetRandom();
+                    int index = this._grid.gridElementValues.GetRandomIndex();
+
+                    element.Color = this._grid.gridElementValues[index].GridColor;
+                    element.ElementText = this._grid.gridElementValues[index].GridValue.ToString();
 
                     element.Spawn();
                 }
@@ -36,9 +39,9 @@ namespace LessmoreCase.Game
         {
             GameSFX.Instance.Play(GameSFX.Instance.DespawnClip);
 
-            foreach (GameGridElement gridElement in elements)
+            for (int i = 0; i < elements.Count - 1; i++)
             {
-                gridElement.Despawn();
+                elements[i].Despawn();
             }
 
             yield return new WaitForSeconds(0.4f);
