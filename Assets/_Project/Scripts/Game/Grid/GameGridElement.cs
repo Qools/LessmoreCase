@@ -60,9 +60,16 @@ namespace LessmoreCase.Game
 
         public void Despawn(Transform target)
         {
+            Vector3 oldPos = this.transform.position;
+            Vector2 startScale = Vector2.one * 1.0f;
+            Vector2 endScale = Vector2.one * 0.1f;
+
+            this.transform.PunchScaleEffect(new Vector3(0.25f, 0.25f, 0.25f), 5, 1, 0.25f);
+
             this.transform.MoveCoroutine(target.position, 0.25f, () =>
             {
                 this.gameObject.SetActive(false);
+                this.transform.position = oldPos;
             });
         }
 

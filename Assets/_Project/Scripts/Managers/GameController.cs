@@ -3,6 +3,7 @@
     using LessmoreCase.Events;
     using LessmoreCase.Utilities;
     using System.Collections;
+    using System.Collections.Generic;
     using UnityEngine;
 
     public class GameController : Singleton<GameController>
@@ -13,12 +14,21 @@
 
         [SerializeField] private int _movesAvailable = int.MaxValue;
 
+        public List<GameGridElement> selectedElements;
+
+        private int _moveSelectionEndValue;
         private int _moveSelectionValue;
 
         public int MovesAvailable
         {
             get => this._movesAvailable;
             set => this._movesAvailable = value;
+        }
+
+        public int MoveSelectionEndValue
+        {
+            get { return this._moveSelectionEndValue; }
+            set { this._moveSelectionEndValue = value; }
         }
 
         public int MoveSelectionValue

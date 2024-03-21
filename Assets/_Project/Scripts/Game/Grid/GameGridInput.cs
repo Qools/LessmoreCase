@@ -5,6 +5,7 @@ namespace LessmoreCase.Game
     using System.Linq;
     using UnityEngine;
     using LessmoreCase.Events;
+    using System.Xml.Linq;
 
     public class GameGridInput
     {
@@ -25,6 +26,10 @@ namespace LessmoreCase.Game
             this._selectionLine.Clear();
             this.SelectedElements.Clear();
 
+            GameController.Instance.selectedElements.Clear();
+            GameController.Instance.MoveSelectionValue = 0;
+
+            EventSystem.CallSelectionEnd();
             EventSystem.CallSelectionChanged(this.SelectedElements.Count);
         }
         public IEnumerator WaitForSelection()
@@ -35,24 +40,31 @@ namespace LessmoreCase.Game
             {
                 yield return null;
 
-                if (Input.GetMouseButton(0))
+                if (GameManager.Instance.isGameStarted)
                 {
-                    if (_inputRaycast(out GameGridElement element))
+                    if (Input.GetMouseButton(0))
                     {
-                        _processGridElement(element);
-                    }
-                }
-                else if (this.SelectedElements.Count > 0)
-                {
-                    if (_isValidInput())
-                    {
-                        this._selectionLine.Clear();
+                        EventSystem.CallSelectionStarted();
 
-                        yield break;
+                        if (_inputRaycast(out GameGridElement element))
+                        {
+                            _processGridElement(element);
+                        }
                     }
-                    else
+                    else if (this.SelectedElements.Count > 0)
                     {
-                        _clear();
+                        EventSystem.CallSelectionEnd();
+
+                        if (_isValidInput())
+                        {
+                            this._selectionLine.Clear();
+
+                            yield break;
+                        }
+                        else
+                        {
+                            _clear();
+                        }
                     }
                 }
             }
@@ -133,6 +145,8 @@ namespace LessmoreCase.Game
             }
 
             this.SelectedElements.Add(element);
+            GameController.Instance.selectedElements.Add(element);
+            GameController.Instance.MoveSelectionValue += element.Value;
 
             this._selectionLine.Color = element.Color;
 
@@ -143,7 +157,9 @@ namespace LessmoreCase.Game
 
         private void _deselectLast()
         {
+            GameController.Instance.MoveSelectionValue -= this.SelectedElements.Last().Value;
             this.SelectedElements.Remove(this.SelectedElements.Last());
+            GameController.Instance.selectedElements.Remove(GameController.Instance.selectedElements.Last());
 
             this._selectionLine.SetPositions(this.SelectedElements);
 

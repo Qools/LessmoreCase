@@ -50,7 +50,8 @@ namespace LessmoreCase.Game
             gridElementsToSpawn.AddRange(new List<GridElementValue> { 
                 gridElementValues[0], 
                 gridElementValues[1], 
-                gridElementValues[2] 
+                gridElementValues[2],
+                gridElementValues[3]
             });
         }
 

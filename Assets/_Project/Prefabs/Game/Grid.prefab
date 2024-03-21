@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &139017365098728560
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5551359751116456790}
+  - component: {fileID: 7150731739827073730}
+  m_Layer: 0
+  m_Name: Grid
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5551359751116456790
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139017365098728560}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7150731739827073730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139017365098728560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de0e0b3d50b92fc41a3f29c3e0eb4a25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _selectionLine: {fileID: 0}
+  _gridElementPrefab: {fileID: 2201101333795298676, guid: 9b3092c6ce9ab1d43b06ff534b1a1318, type: 3}
+  _rowCount: 6
+  _columnCount: 6
+  _cellSize: 1
+  _colors:
+  - {r: 0.990566, g: 0.41585082, b: 0.4840983, a: 1}
+  - {r: 1, g: 0.90258753, b: 0.3443396, a: 1}
+  - {r: 0.6069082, g: 1, b: 0.5330188, a: 1}
+  - {r: 0.5254902, g: 0.76188564, b: 1, a: 1}
+  gridElementValues:
+  - GridColor: {r: 0.99215686, g: 0.41568628, b: 0.48235294, a: 1}
+    GridValue: 2
+  - GridColor: {r: 1, g: 0.9019608, b: 0.34509805, a: 1}
+    GridValue: 4
+  - GridColor: {r: 0.60784316, g: 1, b: 0.53333336, a: 1}
+    GridValue: 8
+  - GridColor: {r: 0.5254902, g: 0.7607843, b: 1, a: 1}
+    GridValue: 16
+  - GridColor: {r: 1, g: 0.5254902, b: 0.99998957, a: 1}
+    GridValue: 32
+  - GridColor: {r: 1, g: 0.7192371, b: 0.5254902, a: 1}
+    GridValue: 64
+  - GridColor: {r: 0.8797204, g: 1, b: 0.5254902, a: 1}
+    GridValue: 128
+  - GridColor: {r: 1, g: 0.5254902, b: 0.7154329, a: 1}
+    GridValue: 256
+  - GridColor: {r: 0.5254902, g: 1, b: 0.5854904, a: 1}
+    GridValue: 512
+  - GridColor: {r: 0.5254902, g: 0.70027816, b: 1, a: 1}
+    GridValue: 1024
+  gridElementsToSpawn: []

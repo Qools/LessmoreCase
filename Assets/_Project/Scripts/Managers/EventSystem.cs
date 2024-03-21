@@ -21,6 +21,12 @@ namespace LessmoreCase.Events
         public static Action<int> OnSelectionChanged;
         public static void CallSelectionChanged(int count) => OnSelectionChanged?.Invoke(count);
 
+        public static Action OnSelectionStarted;
+        public static void CallSelectionStarted() => OnSelectionStarted?.Invoke();
+        
+        public static Action OnSelectionEnd;
+        public static void CallSelectionEnd() => OnSelectionEnd?.Invoke();
+
         public static Action<int, int> OnScoreChanged;
         public static void CallScoreChanged(int oldScore, int newScore) => OnScoreChanged?.Invoke(oldScore, newScore);
     }

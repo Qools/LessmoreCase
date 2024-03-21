@@ -21,11 +21,13 @@ namespace LessmoreCase.Game
         {
             GameSFX.Instance.Play(GameSFX.Instance.SpawnClip);
 
-            float closestValue = GameController.Instance.FindClosestValue(GameController.Instance.MoveSelectionValue);
+            float closestValue = GameController.Instance.FindClosestValue(GameController.Instance.MoveSelectionEndValue);
 
             _lastElement.Color = this._grid.gridElementValues.Find(e => e.GridValue == closestValue).GridColor;
             _lastElement.ElementText = this._grid.gridElementValues.Find(e => e.GridValue == closestValue).GridValue.ToString();
             _lastElement.Value = this._grid.gridElementValues.Find(e => e.GridValue == closestValue).GridValue;
+
+            _lastElement.transform.PunchScaleEffect(new Vector3(0.25f, 0.25f, 0.25f), 5, 1, 0.25f);
 
             yield return new WaitForSeconds(0.4f);
 
@@ -48,19 +50,19 @@ namespace LessmoreCase.Game
         {
             GameSFX.Instance.Play(GameSFX.Instance.DespawnClip);
 
-            GameController.Instance.MoveSelectionValue = 0;
+            GameController.Instance.MoveSelectionEndValue = 0;
 
             foreach (GameGridElement element in elements)
             {
-                GameController.Instance.MoveSelectionValue += element.Value;
-            }
-
-            for (int i = 0; i < elements.Count - 1; i++)
-            {
-                elements[i].Despawn();
+                GameController.Instance.MoveSelectionEndValue += element.Value;
             }
 
             _lastElement = elements[elements.Count - 1];
+
+            for (int i = 0; i < elements.Count - 1; i++)
+            {
+                elements[i].Despawn(_lastElement.transform);
+            }
 
             yield return new WaitForSeconds(0.4f);
 

@@ -28,5 +28,15 @@ namespace LessmoreCase.Utilities.Extensions
                 onComplete?.Invoke();
             });
         }
+
+        public static void PunchScaleEffect(this Transform transform, Vector3 effectValue, int vibrato = 1, float elasticity = 1f, float time = 1f, UnityAction onComplete = null)
+        {
+            transform.DOPunchScale(effectValue, time, vibrato, elasticity).OnComplete(() =>
+            {
+                transform.localScale = Vector3.one;
+
+                onComplete?.Invoke();
+            });
+        }
     }
 }
