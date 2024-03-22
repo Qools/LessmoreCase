@@ -75,4 +75,6 @@ MonoBehaviour:
     GridValue: 512
   - GridColor: {r: 0.5254902, g: 0.70027816, b: 1, a: 1}
     GridValue: 1024
+  - GridColor: {r: 0.754717, g: 0.12459949, b: 0.48382396, a: 1}
+    GridValue: 2048
   gridElementsToSpawn: []
